@@ -7,13 +7,13 @@ local followPlayer = require("src.logic.ai.movement.follow_player")
 local view = require("src.graphics.view")
 
 local game
+local theView
 
 love.load = function()
   local adventurerSprite = sprite.create("assets/images/player.png")
-  local player = entity.create(adventurerSprite, 16, 16, 0, 2, keyboardMovement)
-  game = gamestate.create(player, view.create(128, 96, 0, 0))
-
-  local slimeSprite = sprite.create("assets/images/slime.png")
+  local player = entity.create(adventurerSprite, 16, 32, 0, 2, keyboardMovement)
+  theView = view.create(128, 96, 0, 0)
+  game = gamestate.create(player, theView)
 end
 
 love.update = function(dt)

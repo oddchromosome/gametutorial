@@ -21,9 +21,13 @@ local viewOffset = 4
 
 local update = function(self, game)
   local currentRoom = game.map:currentRoom()
-  local maxX = (currentRoom.roomWidth - self.gameWidth) + viewOffset
-  -- WHY +10 ?!
-  local maxY = (currentRoom.roomHeight - self.gameHeight) + viewOffset
+  local dx = currentRoom.roomWidth - self.gameWidth
+  local dy = currentRoom.roomHeight - self.gameHeight
+  if dx < 0 then dx = 0 end
+  if dy < 0 then dy = 0 end
+  local maxX = dx + viewOffset
+  local maxY = dy + viewOffset
+
   self.x = clamp(-viewOffset, game.player.x - self.gameWidth / 2, maxX)
   self.y = clamp(-viewOffset, game.player.y - self.gameHeight / 2, maxY)
 end
